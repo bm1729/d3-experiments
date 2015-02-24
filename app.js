@@ -19,7 +19,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'src/client')));
+app.use('/app', express.static(path.join(__dirname, 'src/client')));
+app.use('/third-party', express.static(path.join(__dirname, 'bower_components')));
 
 app.use('/', routes);
 

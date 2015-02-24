@@ -1,0 +1,20 @@
+{
+  "name": "d3-experiments",
+  "version": "0.0.0",
+  "homepage": "https://github.com/bm1729/d3-experiments",
+  "authors": [
+    "bm1729 <ben.mumford1729@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "d3": "~3.5.5",
+    "bootstrap": "~3.3.2"
+  }
+}
