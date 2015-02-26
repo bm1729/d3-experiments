@@ -4,17 +4,28 @@
         <title></title>
         
         <script src="/third-party/jquery/dist/jquery.js"></script>
+        <script src="/third-party/jquery-ui/jquery-ui.js"></script>
         <script src="/third-party/bootstrap/dist/js/bootstrap.js"></script>
         <script src="/third-party/d3/d3.js"></script>
+        <script src="/third-party/moment/moment.js"></script>
         <script src="/app/javascripts/app.js"></script>
         
-        <link rel="stylesheet" href="/app/stylesheets/style.css">
         <link rel="stylesheet" href="/third-party/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="/third-party/jquery-ui/themes/cupertino/jquery-ui.css">
+        <link rel="stylesheet" href="/app/stylesheets/style.css">
     </head>
     <body>
         <h1>Index page</h2>
         
-        <button id="change">Change data</button>
+        <p>
+            <label for="from">From</label>
+            <input type="text" id="from" name="from">
+            <label for="to">To</label>
+            <input type="text" id="to" name="to">
+            <label for="stock">Stock</label>
+            <input type="text" id="stock"></input>
+            <button id="updateChart">Update Chart</button>
+        </p>
         
         <svg class="chart"></svg>
     </body>

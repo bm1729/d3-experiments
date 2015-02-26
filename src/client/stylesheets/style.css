@@ -7,21 +7,6 @@ a {
   color: #00B7FF;
 }
 
-.chart rect {
-  fill: steelblue;
-}
-
-.chart rect:hover {
-  fill: brown;
-}
-
-
-.chart text {
-  fill: white;
-  font: 10px sans-serif;
-  text-anchor: middle;
-}
-
 .axis text {
   font: 10px sans-serif;
 }
@@ -31,4 +16,10 @@ a {
   fill: none;
   stroke: #000;
   shape-rendering: crispEdges;
+}
+
+.line {
+  stroke: green;
+  stroke-width: 2;
+  fill: none;
 }
