@@ -1,4 +1,4 @@
-/* globals d3, moment, $ */
+/* globals d3, moment, $, lineChart */
 
 $(function() {
     
