@@ -1,6 +1,7 @@
 /* globals d3, moment, $ */
 
 function lineChart() {
+    
     var marginTop =  20;
     var marginBottom = 20;
     var marginLeft = 40;
@@ -8,44 +9,12 @@ function lineChart() {
     var plotHeight = 400;
     var plotWidth = 600;
     
-    var getterSetter = function(field, value) {
-        if (arguments.length === 1) {
-            return chart[field];
-        }
-        chart[field] = value;
-        return chart;
-    };
-    
     var x = function(d) {
         return moment(d.Date);
     };
     
     var y = function(d) {
         return +d.Close;
-    };
-    
-    chart.marginTop = function(value) {
-        return getterSetter('marginTop', value);
-    };
-    
-    chart.marginBottom = function(value) {
-        return getterSetter('marginBottom', value);
-    };
-    
-    chart.marginLeft = function(value) {
-        return getterSetter('marginLeft', value);
-    };
-    
-    chart.marginRight = function(value) {
-        return getterSetter('marginRight', value);
-    };
-    
-    chart.plotHeight = function(value) {
-        return getterSetter('plotHeight', value);
-    };
-    
-    chart.plotWidth = function(value) {
-        return getterSetter('plotWidth', value);
     };
     
     function chart (selection) {
@@ -103,6 +72,54 @@ function lineChart() {
                 .call(yAxis);
         });
     }
+    
+    chart.marginTop = function(value) {
+        if (!arguments.length) {
+            return marginTop;
+        }
+        marginTop = value;
+        return chart;
+    };
+    
+    chart.marginBottom = function(value) {
+        if (!arguments.length) {
+            return marginBottom;
+        }
+        marginBottom = value;
+        return chart;
+    };
+    
+    chart.marginLeft = function(value) {
+        if (!arguments.length) {
+            return marginLeft;
+        }
+        marginLeft = value;
+        return chart;
+    };
+    
+    chart.marginRight = function(value) {
+        if (!arguments.length) {
+            return marginRight;
+        }
+        marginRight = value;
+        return chart;
+    };
+    
+    chart.plotHeight = function(value) {
+        if (!arguments.length) {
+            return plotHeight;
+        }
+        plotHeight = value;
+        return chart;
+    };
+    
+    chart.plotWidth = function(value) {
+        if (!arguments.length) {
+            return plotWidth;
+        }
+        plotWidth = value;
+        return chart;
+    };
     
     return chart;
 }
