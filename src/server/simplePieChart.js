@@ -4,7 +4,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.sendFile(path.join(__dirname, '../views/pieChart.html'));
+  res.sendFile(path.join(__dirname, '../views/simplePieChart.html'));
 });
 
 module.exports = router;

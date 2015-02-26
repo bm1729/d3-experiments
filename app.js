@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var lineChart = require('./src/server/lineChart');
-var pieChart = require('./src/server/pieChart');
+var simplePieChart = require('./src/server/simplePieChart');
 
 var app = express();
 
@@ -24,7 +24,7 @@ app.use('/app', express.static(path.join(__dirname, 'src/client')));
 app.use('/third-party', express.static(path.join(__dirname, 'bower_components')));
 
 app.use('/lineChart', lineChart);
-app.use('/pieChart', pieChart);
+app.use('/simplePieChart', simplePieChart);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
