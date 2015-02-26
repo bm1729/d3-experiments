@@ -2,40 +2,10 @@
 
 $(function() {
     
-    var margins = { top: 20, bottom: 20, left: 40, right: 20 };
-    var plotHeight = 400;
-    var plotWidth = 600;
-    var dateFormat = "yy-mm-dd";
+    setupDatepickers();
     
-    var svg = d3.select('svg')
-        .attr("width", plotWidth + margins.left + margins.right)
-        .attr("height", plotHeight + margins.top + margins.bottom);
-        
-    var chart = svg.append("g")
-        .attr("width", plotWidth)
-        .attr("height", plotHeight)
-        .attr("transform", "translate(" + margins.left + "," + margins.top + ")");
-        
-    $("#from").datepicker({
-        defaultDate: "-2",
-        changeMonth: true,
-        dateFormat: dateFormat,
-        maxDate: "-2",
-        onClose: function( selectedDate ) {
-            var toMin = moment(selectedDate).add(1, "days").format("YYYY-MM-DD");
-            $("#to").datepicker("option", "minDate", toMin);
-        }
-    });
-    $("#to").datepicker({
-        defaultDate: "-1",
-        changeMonth: true,
-        dateFormat: dateFormat,
-        maxDate: "-1",
-        onClose: function( selectedDate ) {
-            var fromMax = moment(selectedDate).add(-1, "days").format("YYYY-MM-DD");
-            $("#from").datepicker("option", "maxDate", fromMax);
-        }
-    });
+    var chart = lineChart();
+    var selection = d3.select('#chart');
         
     $('button#updateChart').click(function() {
     
@@ -52,43 +22,32 @@ $(function() {
         var stock = $('#stock').val();
         
         $.get(part1 + stock + part2 + from + part3 + to + part4, {}, function(results) {
-            
             var data = results.query.results.quote;
-        
-            var xScale = d3.time.scale()
-                .domain([moment(from), moment(to)])
-                .range([0, plotWidth]);
-            var yScale = d3.scale.linear()
-                .domain([d3.min(data, function(d) { return +d.Close; }), d3.max(data, function(d) { return +d.Close; })])
-                .range([plotHeight, 0]);
-                
-            var lineGen = d3.svg.line()
-                .x(function(d) {
-                    return xScale(moment(d.Date));
-                })
-                .y(function(d) {
-                    return yScale(+d.Close);
-                });
-            chart.append('svg:path')
-                .attr('d', lineGen(data))
-                .attr("class", "line");
-              
-            var xAxis = d3.svg.axis()
-                .scale(xScale)
-                .orient("bottom");
-                
-            chart.append("svg:g")
-                .attr("class", "axis")
-                .attr("transform", "translate(0," + plotHeight + ")")
-                .call(xAxis);
-              
-            var yAxis = d3.svg.axis()
-                .scale(yScale)
-                .orient("left");
-                
-            chart.append("svg:g")
-                .attr("class", "axis")
-                .call(yAxis);
+            selection.datum(data).call(chart);
         });
     });
+    
+    function setupDatepickers() {
+        var dateFormat = "yy-mm-dd";
+        $("#from").datepicker({
+            defaultDate: "-2",
+            changeMonth: true,
+            dateFormat: dateFormat,
+            maxDate: "-2",
+            onClose: function( selectedDate ) {
+                var toMin = moment(selectedDate).add(1, "days").format("YYYY-MM-DD");
+                $("#to").datepicker("option", "minDate", toMin);
+            }
+        });
+        $("#to").datepicker({
+            defaultDate: "-1",
+            changeMonth: true,
+            dateFormat: dateFormat,
+            maxDate: "-1",
+            onClose: function( selectedDate ) {
+                var fromMax = moment(selectedDate).add(-1, "days").format("YYYY-MM-DD");
+                $("#from").datepicker("option", "maxDate", fromMax);
+            }
+        });
+    }
 });
