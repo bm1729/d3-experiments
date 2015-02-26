@@ -1,6 +1,6 @@
 /* globals d3, moment, $ */
 
-function lineChart(config) {
+function lineChart() {
     var marginTop =  20;
     var marginBottom = 20;
     var marginLeft = 40;
