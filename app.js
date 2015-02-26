@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./src/server/index');
+var lineChart = require('./src/server/lineChart');
 
 var app = express();
 
@@ -22,7 +22,7 @@ app.use(cookieParser());
 app.use('/app', express.static(path.join(__dirname, 'src/client')));
 app.use('/third-party', express.static(path.join(__dirname, 'bower_components')));
 
-app.use('/', routes);
+app.use('/lineChart', lineChart);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
