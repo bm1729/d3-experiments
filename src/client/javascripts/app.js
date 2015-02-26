@@ -70,7 +70,7 @@ $(function() {
                     return yScale(+d.Close);
                 });
             chart.append('svg:path')
-               .attr('d', lineGen(data))
+                .attr('d', lineGen(data))
                 .attr("class", "line");
               
             var xAxis = d3.svg.axis()
